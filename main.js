@@ -28,12 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar.style.width = percentage + "%";
     }
 
-    // 4. Live Growth Simulation (Adds 1-3 signatures every 4 to 9 seconds)
-    setInterval(() => {
-        baseCount += Math.floor(Math.random() * 3) + 1;
-        updateDisplay();
-    }, Math.floor(Math.random() * 5000) + 4000);
-
     // 5. Signature Registration Form Listener
     petitionForm.addEventListener('submit', (event) => {
         event.preventDefault();
