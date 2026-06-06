@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KeepRobloxOpen - Bring Back 2017 Roblox</title>
     <style>
-        /* Aggressive Movement Theme */
+        /* Clean Movement Design Architecture */
         :root {
             --bg-color: #0b0c10;
             --card-bg: #1f2833;
             --accent-red: #ff2a2a;
             --accent-blue: #00d2ff;
             --text-color: #ffffff;
-            --muted-text: #c5a059;
+            --success-green: #25d366;
         }
 
         body {
@@ -37,7 +37,6 @@
             margin: 0;
             font-size: 3.5rem;
             letter-spacing: 2px;
-            color: #fff;
             text-transform: uppercase;
         }
 
@@ -51,6 +50,91 @@
             padding: 0 20px;
             flex: 1;
             text-align: center;
+        }
+
+        .petition-box {
+            background-color: #111;
+            border: 3px solid var(--accent-blue);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .counter-title {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .counter-number {
+            color: var(--accent-blue);
+            font-size: 4rem;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .progress-bar-container {
+            background-color: #222;
+            border-radius: 10px;
+            height: 25px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--accent-blue), #005f73);
+            height: 100%;
+            width: 0%; /* Adjusted automatically by main.js */
+            transition: width 0.5s ease-in-out;
+        }
+
+        .sign-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 25px auto 0 auto;
+        }
+
+        .sign-input {
+            font-family: 'Arial', sans-serif;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            border: 2px solid #444;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .sign-input:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .submit-btn {
+            font-family: 'Impact', sans-serif;
+            background-color: var(--accent-red);
+            color: white;
+            font-size: 1.5rem;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #cc0000;
+        }
+
+        .submit-btn:disabled {
+            background-color: var(--success-green);
+            cursor: not-allowed;
         }
 
         .manifesto {
@@ -93,7 +177,6 @@
             text-transform: uppercase;
         }
 
-        /* Share Buttons Grid */
         .share-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -141,7 +224,23 @@
     </header>
 
     <div class="container">
-        <!-- The Core Message / Manifesto -->
+        <!-- Interactive Signature Platform -->
+        <section class="petition-box">
+            <h2 class="counter-title">Signatures Collected</h2>
+            <span class="counter-number" id="sigCounter">14,842</span>
+            <p style="font-family:'Arial'; color:#aaa; margin:5px 0 0 0;">Goal: 20,000 Signatures to Force a Response</p>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <form class="sign-form" id="petitionForm">
+                <input type="text" id="usernameInput" class="sign-input" placeholder="Enter Your Roblox Username" required>
+                <button type="submit" id="submitBtn" class="submit-btn">Sign the Petition</button>
+            </form>
+        </section>
+
+        <!-- Manifesto Core -->
         <section class="manifesto">
             <h2>Our Demands to Roblox Corp (RBLX)</h2>
             <p>We are a unified player initiative demanding change. Roblox has lost its way, and it is time for the developers to listen to the community that built them.</p>
@@ -150,25 +249,21 @@
             <p><span class="highlight">3. MAKE ROBLOX FREE AGAIN:</span> Stop the aggressive monetization. Put creativity over corporate greed.</p>
         </section>
 
-        <!-- Viral Sharing Section -->
+        <!-- Social Engine Sharing Modules -->
         <section class="share-section">
             <h3>Spam This Everywhere. Reach The Devs.</h3>
             <p style="font-family: 'Arial'; color: #aaa;">We need this link in front of every community manager and corporate executive. Do your part:</p>
             
             <div class="share-grid">
-                <!-- Twitter/X Share Link -->
                 <a href="https://twitter.com" 
                    target="_blank" class="share-btn btn-twitter">
                     🐦 Tweet at RBLX
                 </a>
 
-                <!-- Discord Shortcut (Copies Link) -->
-                <a href="#" onclick="navigator.clipboard.writeText('Join the movement to save Roblox: https://KeepRobloxOpen.com'); alert('Movement link copied! Now paste it into your Discord servers!'); return false;" 
-                   class="share-btn btn-discord">
+                <a href="#" id="discordBtn" class="share-btn btn-discord">
                     💬 Share to Discord
                 </a>
 
-                <!-- WhatsApp Share Link -->
                 <a href="https://whatsapp.com" 
                    target="_blank" class="share-btn btn-whatsapp">
                     🟢 Send to WhatsApp
@@ -180,5 +275,8 @@
     <footer>
         <p>KeepRobloxOpen.com is a grassroots fan movement. We are not associated with Roblox Corporation. We just want our game back.</p>
     </footer>
+
+    <!-- Execution Link to External JavaScript Layer -->
+    <script src="main.js"></script>
 </body>
 </html>
