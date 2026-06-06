@@ -1,8 +1,8 @@
 // KeepRobloxOpen.com - Core Campaign Logic Mechanics
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Initial State Configurations
-    let baseCount = 14842;
-    const goal = 20000;
+    // 1. Initial State Configurations (Completely honest counting tracker)
+    let baseCount = 0;
+    const goal = 10000;
 
     const sigCounter = document.getElementById('sigCounter');
     const progressBar = document.getElementById('progressBar');
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Check Browser Memory for Previous Signatures
     if (localStorage.getItem('hasSigned')) {
-        baseCount += 1;
+        baseCount = 1; // Real local user signed
         usernameInput.value = localStorage.getItem('signedUser');
         usernameInput.disabled = true;
         submitBtn.innerText = "You Signed The Petition!";
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar.style.width = percentage + "%";
     }
 
-    // 5. Signature Registration Form Listener
+    // 4. Signature Registration Form Listener
     petitionForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const username = usernameInput.value.trim();
@@ -39,17 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('hasSigned', 'true');
         localStorage.setItem('signedUser', username);
         
-        baseCount += 1;
+        baseCount = 1;
         updateDisplay();
 
         usernameInput.disabled = true;
         submitBtn.innerText = "Thank You, Soldier!";
         submitBtn.disabled = true;
 
-        alert("Your signature has been registered! Now use the sharing buttons below to spread the word!");
+        alert("Your signature has been registered! Now share the page link to help us reach 10,000 real players!");
     });
 
-    // 6. Discord Instant Clipboard Copy Routine
+    // 5. Discord Instant Clipboard Copy Routine
     discordBtn.addEventListener('click', (event) => {
         event.preventDefault();
         const movementText = 'Join the movement to save Roblox: https://KeepRobloxOpen.com';
